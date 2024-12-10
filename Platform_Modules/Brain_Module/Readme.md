@@ -16,7 +16,7 @@ With this adaptor, the majority of the power cables can be tucked away under the
 
 ### Molex Adaptor
 <img src="Molex_solo.jpeg" width="600">
-<img src="molex_render.jpg" width="600">
+<img src="Molex_render.jpg" width="600">
 <img src="Molex_case.jpeg" width="600"> 
 
 
