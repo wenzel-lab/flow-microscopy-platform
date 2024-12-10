@@ -19,8 +19,8 @@ From the eight initial modules we decide on reducing them to five by joining the
 <img src="Iteration1.jpg" width="600"> 
 
 From further iteration on this model we got to the final optimal organization moduls that you can find with greater detail here:
-- [Brain Module (Electronics)]()
-- [Heat and Stir Module]()
-- [Pressure Regulator Module]()
-- [Flow Sensor Module]()
-- [Stage Module]() 
+- [Brain Module (Electronics)](Platform_Modules/Brain_Module/Readme.md)
+- [Heat and Stir Module](Platform_Modules/Heat_Stir_Module/Readme.md)
+- [Pressure Regulator Module](Platform_Modules/Pressure_Module/Readme.md)
+- [Flow Sensor Module](Platform_Modules/Flow_Module/Readme.md)
+- [Stage Module](Platform_Modules/Stage_Module/Readme.md) 
