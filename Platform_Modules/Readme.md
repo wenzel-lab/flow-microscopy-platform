@@ -1,6 +1,7 @@
 ## Organization Modules 
 Here you can find information about the different modules created to organize the flow microscopy platform.
-<img src="Images/Setupview1.jpg" width="600"> <img src="Images/Setupview2.jpg" width="600"> 
+<img src="Images/Setupview1.jpg" width="600"> 
+<img src="Images/Setupview2.jpg" width="600"> 
 From the analysis of the state of the microscopy platform without a clear method of organization eight crucial modules were identified:
 - Pressure module
 - Flow module
@@ -16,7 +17,7 @@ In that state, all the modules were using an unreasonable amount of space in the
 <img src="Images/30x40 Plate.jpg" width="600"> 
 
 From the eight initial modules we decide on reducing them to five by joining the modules that benefit for beeing closer together, resulting in this first iteration.
-<img src="Images/Iteration1.jpg" width="600"> 
+<img src="Images/Itaration1.jpg" width="600"> 
 
 From further iteration on this model we got to the final optimal organization moduls that you can find with greater detail here:
 - [Brain Module (Electronics)](Brain_Module/Readme.md)
