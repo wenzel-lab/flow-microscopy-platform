@@ -1,2 +1,2 @@
 ## Flow Sensor Module
-<img src="Flow_render" width="600"> 
+<img src="Flow_render.jpg" width="600"> 
