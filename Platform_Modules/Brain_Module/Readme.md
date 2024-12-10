@@ -9,9 +9,15 @@ Imagen placa<img src=".jpg" width="600">
 Complementary to this two different cable holders were designed to facilitate the organization of the cables coming out of the raspberry that can be grouped into two distinct types, the power adaptor and the Molex adaptor (in the name of the cable type). Both of these consist of two 3D printed parts that clamp the cables using four 1.1 centimeters round magnets
 
 ### Power Adaptor
+With this adaptor, the majority of the cables can be tucked away under the optic table 
 <img src="Power_solo.jpeg" width="600">
 <img src="Power_render.jpg" width="600">
 <img src="Power_case.jpeg" width="600"> 
 
 ### Molex Adaptor
 Imagen cable<img src=".jpg" width="600"> Imagen render<img src=".jpg" width="600"> Imagen IRL<img src=".jpg" width="600"> 
+
+### Future Steps
+- Define if the main plate needs to change to heat insert or maintain screws and nuts
+- Design a way to keep the power supplies fixed under the main plate
+- Improve on the adaptors to make the magnets not visible and less easy to remove
