@@ -20,7 +20,7 @@ From the eight initial modules we decide on reducing them to five by joining the
 
 From further iteration on this model we got to the final optimal organization moduls that you can find with greater detail here:
 - [Brain Module (Electronics)](Brain_Module/Readme.md)
-- [Heat and Stir Module](Platform_Modules/Heat_Stir_Module/Readme.md)
-- [Pressure Regulator Module](Platform_Modules/Pressure_Module/Readme.md)
-- [Flow Sensor Module](Platform_Modules/Flow_Module/Readme.md)
-- [Stage Module](Platform_Modules/Stage_Module/Readme.md) 
+- [Heat and Stir Module](Heat_Stir_Module/Readme.md)
+- [Pressure Regulator Module](Pressure_Module/Readme.md)
+- [Flow Sensor Module](Flow_Module/Readme.md)
+- [Stage Module](Stage_Module/Readme.md) 
