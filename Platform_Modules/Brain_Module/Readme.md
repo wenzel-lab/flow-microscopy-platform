@@ -1,2 +1,2 @@
 ## Brain Module (Electronics)
-<img src="Brain_render.jpeg" width="600"> 
+<img src="Brain_render.jpg" width="600"> 
