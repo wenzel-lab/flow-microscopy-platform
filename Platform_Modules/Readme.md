@@ -1,7 +1,7 @@
 ## Organization Modules 
 Here you can find information about the different modules created to organize the flow microscopy platform.
-<img src="Images/Setupview1.jpg" width="600"> 
-<img src="Images/Setupview2.jpg" width="600"> 
+<img src="Images/Setupview1.jpeg" width="600"> 
+<img src="Images/Setupview2.jpeg" width="600"> 
 From the analysis of the state of the microscopy platform without a clear method of organization eight crucial modules were identified:
 - Pressure module
 - Flow module
