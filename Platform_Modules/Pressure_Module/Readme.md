@@ -9,7 +9,7 @@ One of the crucial components when it comes to microfluidics experimentation is 
 
 This regulator connects directly to the fluid samples that in the early unorganized state were held by the sample reservoir you can find [here](module_sample_reservoirs/Readme.md).
 
-<img src="module_sample_reservoirs/4-cap-manifold.png" width="600"> 
+<img src="flow-microscopy-platform/module_sample_reservoirs/4-cap-manifold.png" width="600"> 
 
 To accommodate the regulator and the samples in the newly organized setup the first step was allowing them to be closer to each other and reduce the need for unnecessary tubings between them. To prevent the reservoirs from crashing with the regulator new legs for de sample reservoir were designed allowing to modularly change of the height of the holder depending on the position of the regulator another component of the microscopy stage.
 
