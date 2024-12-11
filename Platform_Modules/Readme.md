@@ -1,5 +1,5 @@
 ## Organization Modules 
-Here you can find information about the different modules created to organize the flow microscopy platform.
+Here you can find information about the different modules created to organize the flow microscopy platform, 3D files are all free accces on Onshape [here](https://cad.onshape.com/documents/959fee0bf6a5bfe78f1dda97/w/e657b641acef5b36bf9099ee/e/20e65f96ae81a38be57a4961)
 <img src="Images/Setupview1.jpeg" width="600"> 
 <img src="Images/Setupview2.jpeg" width="600"> 
 
