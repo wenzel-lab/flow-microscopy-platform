@@ -7,7 +7,7 @@ One of the crucial components when it comes to microfluidics experimentation is 
 
 <img src="Pressure_regulator.jpeg" width="600"> 
 
-This regulator connects directly to the fluid samples that in the early unorganized state were held by the sample reservoir you can find [here](module_sample_reservoirs/Readme.md).
+This regulator connects directly to the fluid samples that in the early unorganized state were held by the sample reservoir you can find [here](flow-microscopy-platform/module_sample_reservoirs/Readme.md).
 
 <img src="flow-microscopy-platform/module_sample_reservoirs/4-cap-manifold.png" width="600"> 
 
