@@ -2,7 +2,7 @@
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
-![Image title](/images/flow-platform-diagram.jpg){ width="800" }
+![Image title](/assets/images/flow-platform-diagram.jpg){ width="800" }
 
 
 ## Commands
