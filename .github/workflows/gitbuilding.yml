@@ -7,12 +7,20 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-20.04
     steps:
+      # Checkout the `documentation/beta` branch to read files from "documentation"
       - uses: actions/checkout@v2
+        with:
+          ref: documentation/beta
+
+      # Set up Python for the build
       - name: Install Python 3
         uses: actions/setup-python@v1
         with:
           python-version: "3.7"
+      
+      # Build the project from the "documentation" folder
       - name: Build
+        working-directory: documentation
         run: |
           pip install gitbuilding
           gitbuilding build-html
@@ -20,7 +28,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: documentation/beta
-          FOLDER: documentation/
+          BRANCH: main
+          FOLDER: documentation/_site/
           # Automatically remove deleted files from the deploy branch
           CLEAN: false
