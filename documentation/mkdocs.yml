@@ -1,5 +1,5 @@
 site_name: My MkDocs Material Documentation
-site_url: https://sitename.example
+site_url: https://wenzel-lab.github.io/flow-microscopy-platform/
 theme:
   name: material
   logo: assets/favicon.ico
