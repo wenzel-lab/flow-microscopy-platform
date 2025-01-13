@@ -43,7 +43,10 @@ For interactions in our team and with the community applies the [GOSH Code of Co
 ## License
 
 [CERN OHL 2W](LICENSE) © Tobias Wenzel, Christie Nel, Eduardo Honeyman, Matías Hurtado, and Pierre Padilla-Huamantinco. This project is Open Source Hardware - please acknowledge us when using the hardware or sharing modifications.
+<<<<<<< HEAD
 
 ## Funding
 
 This work is part of funded projects granted to T.W. from ANID FONDECYT Iniciacion 11200666, the Chang Zuckerberg Initiative project ‘Latin American Hub for Bioimaging Through Open Hardware’, and CIFAR. Our team is also grateful for the additional funding and resources provided by the [Institute for Biological and Medical Engineering](https://ingenieriabiologicaymedica.uc.cl/en/).
+=======
+>>>>>>> 03514e16fe32323e6f714ac16f2570b37cdd4ff4
