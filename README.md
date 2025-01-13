@@ -30,6 +30,20 @@ We also designed a pressure vial holder with individual manifold caps for easy t
 You're free to fork the project and enhance it. If you have any suggestions to improve it or add any additional functions make a pull-request or [open an issue](https://github.com/wenzel-lab/flow-microscopy-platform/issues/new).
 For interactions in our team and with the community applies the [GOSH Code of Conduct](https://openhardware.science/gosh-2017/gosh-code-of-conduct/).
 
+## Team
+
++ Project initiators:
+    - Tobias Wenzel @MakerTobey
+    - Christie Nel @Cyberius
+    - Pierre Padilla-Huamantinco @biodotpe
+    - Matias Hurtado @matiashl27
++ Contributors:
+    - Eduardo Honeyman
+
 ## License
 
-[CERN OHL 2W](LICENSE) © Tobias Wenzel, Christie Nel, Eduardo Honeyman, Matías Hurtado and Pierre Padilla-Huamantinco. This project is Open Source Hardware - please acknowledge us when using the hardware or sharing modifications.
+[CERN OHL 2W](LICENSE) © Tobias Wenzel, Christie Nel, Eduardo Honeyman, Matías Hurtado, and Pierre Padilla-Huamantinco. This project is Open Source Hardware - please acknowledge us when using the hardware or sharing modifications.
+
+## Funding
+
+This work is part of funded projects granted to T.W. from ANID FONDECYT Iniciacion 11200666, the Chang Zuckerberg Initiative project ‘Latin American Hub for Bioimaging Through Open Hardware’, and CIFAR. Our team is also grateful for the additional funding and resources provided by the [Institute for Biological and Medical Engineering](https://ingenieriabiologicaymedica.uc.cl/en/).
