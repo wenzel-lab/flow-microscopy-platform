@@ -25,6 +25,8 @@ We also designed a pressure vial holder with individual manifold caps for easy t
 <img src="./images/4-cap-mainfold_w_hidden_edges.png" width="600">
 </p>
 
+We also implemented a droplet detection AI module to measure the droplet diameters and display the size distribution https://github.com/wenzel-lab/droplet_AInalysis
+
 ## Contribute
 
 You're free to fork the project and enhance it. If you have any suggestions to improve it or add any additional functions make a pull-request or [open an issue](https://github.com/wenzel-lab/flow-microscopy-platform/issues/new).
