@@ -1,0 +1,73 @@
+from flask import Flask, Response
+from picamera2 import Picamera2
+import picamera2
+import cv2
+
+from queue import Queue
+from threading import Event
+
+print("importing pi_camera core")
+class PiCamera:
+    frame_queue = Queue(1)
+    cam_running_event = Event()
+    
+    def __init__(self):
+        self.cam = None
+
+    def list_features(self):
+        features = []
+        features = [
+            {
+                "name": "height",
+                "display_name": "Height",
+                "tooltip": "Height of the video",
+                "description": "Height of the video",
+                "type": "IntFeature",
+                "unit": "pixels",
+                "range": (0, 10000),
+                "access_mode": (True, True)
+            },
+            {
+                "name": "width",
+                "display_name": "Width",
+                "tooltip": "Width of the video",
+                "description": "Width of the video",
+                "type": "IntFeature",
+                "unit": "pixels",
+                "range": (0, 10000),
+                "access_mode": (True, True)
+            }
+
+        ]
+        return features
+    
+    def setup_camera(self, config):
+        failed_features = []
+        try:
+            self.cam_running_event.clear()
+            self.cam.stop()
+            self.cam.configure(self.cam.create_video_configuration(main={"size": (config["width"], config["height"])}))
+            self.cam.start()
+            self.cam_running_event.set()
+        except Exception as e:
+            failed_features.append(str(e))
+        return failed_features
+
+    def generate_frames(self, config=None):
+        # if self.cam is not None:
+        #     self.cam.stop()
+        # del self.cam
+        self.cam = Picamera2()
+        
+        
+        self.cam_running_event.clear()
+        self.cam.stop()
+        self.cam.configure(self.cam.create_video_configuration(main={"size": (640, 480)}))
+        self.cam_running_event.set()
+        while self.cam_running_event.is_set():
+            frame = self.cam.capture_array()
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  # Convert BGR to RGB
+            ret, buffer = cv2.imencode('.jpg', frame)
+            yield buffer
+        self.cam.stop()
+        

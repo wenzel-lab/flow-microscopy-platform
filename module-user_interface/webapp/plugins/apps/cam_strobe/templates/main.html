@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('cam_strobe.static', filename='favicon.ico') }}" type="image/x-icon">
+    <title>Camera Strobe</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1 bg-light sidebar">
+                <!-- <h4>Menu</h4> -->
+                <div class="text-center">
+                    <img src="{{ url_for('cam_strobe.static', filename='favicon.ico') }}" alt="Icon" class="img-fluid mb-1" style="width: 50px; height: 50px;">
+                </div>
+                <!-- <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Camera Strobe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Settings</a>
+                    </li>
+                </ul> -->
+            </div>
+            <div class="col-md-11">
+                <h1 class="mt-4">Camera Strobe</h1>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="camera-tab" data-bs-toggle="tab" data-bs-target="#camera-config-tab-pane" type="button" role="tab">
+                            Camera Config Tab
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="camera-tab" data-bs-toggle="tab" data-bs-target="#camera-tab-pane" type="button" role="tab">
+                            Camera Tab
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="heater-tab" data-bs-toggle="tab" data-bs-target="#heaters-tab-pane" type="button" role="tab">
+                            Heaters Tab
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content mt-3" id="myTabContent">
+                    <div class="tab-pane fade show active" id="camera-config-tab-pane" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Camera selection</h5>
+                                                <form id="camera-selection-form">
+                                                    <div class="form-group">
+                                                        <label for="camera-select">Select Camera Type:</label>
+                                                        <select class="form-control" id="camera-select">
+                                                            <option value="none" {% if camera_name == 'none' %}selected{% endif %}>Select Camera</option>
+                                                            <option value="mako" {% if camera_name == 'mako' %}selected{% endif %}>Mako Camera</option>
+                                                            <option value="pi"  {% if camera_name == 'pi' %}selected{% endif %}>Pi Camera</option>
+                                                        </select>
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary" onclick="updateCamera()">Update</button>
+                                                </form>
+                                                <script>
+                                                    
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Camera Configuration</h5>
+                                                <form id="camera-config-form">
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Strobe Configuration</h5>
+                                                <form id="strobe-config-form">
+                                                    <div class="form-group row">
+                                                        <label for="strobe_enable" class="col-sm-4 col-form-label">Enabled</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="checkbox" id="input_strobe_enable" class="form-check-input" onchange="strobe_enable(this.checked)">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="strobe_hold" class="col-sm-4 col-form-label">Hold</label>
+                                                        <!-- <div class="col-sm-4">
+                                                            <p id="strobe_hold" class="form-control-plaintext"></p>
+                                                        </div> -->
+                                                        <div class="col-sm-4">
+                                                            <input type="checkbox" id="input_strobe_hold" class="form-check-input" onchange="strobe_enable(this.checked)">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="strobe_period_us" class="col-sm-4 col-form-label">Period (us)</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="number" id="input_strobe_period_us" class="form-control" min="1" max="10000">
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <button type="button" id="btn_strobe_period_us" class="btn btn-primary" onclick="strobe_period()">Set</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="strobe_cam_time_us" class="col-sm-4 col-form-label">Cam Read Time (us)</label>
+                                                        <div class="col-sm-4">
+                                                            <p id="strobe_cam_time_us" class="form-control-plaintext"></p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="form-group row">
+                                                        <label for="strobe_framerate" class="col-sm-4 col-form-label">Framerate</label>
+                                                        <div class="col-sm-4">
+                                                            <p id="strobe_framerate" class="form-control-plaintext"></p>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <button type="button" id="btn_cam_optimize" class="btn btn-primary" onclick="cam_optimize()">Optimize</button>
+                                                        </div>
+                                                    </div> -->
+                                                </form>
+                                                <script>
+                                                    
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Camera Configuration</h5>
+                                                <form id="camera-config-form">
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                                            
+
+                    <div class="tab-pane fade" id="camera-tab-pane" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Camera Visualization</h5>
+                                        <div class="d-flex justify-content-center">
+                                            <div id="camera-container" class="embed-responsive embed-responsive-16by9">
+                                            <!-- <div id="camera-container"> -->
+                                                <iframe id="camera-frame" class="embed-responsive-item" src="" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="play-button" class="btn btn-success mt-3" onclick="playCameraFrame()">Play</button>
+                                        <button type="button" id="stop-button" class="btn btn-danger mt-3" onclick="stopCameraFrame()">Stop</button>
+                                        <button type="button" id="capture-button" class="btn btn-primary mt-3" onclick="capture()">Capture</button>
+                                    </div>
+                                </div>
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Images</h5>
+                                        <div id="file-explorer">
+                                            <ul id="capture-list" class="list-group">
+                                                <!-- Capture items will be populated here -->
+                                            </ul>
+                                            <nav aria-label="Page navigation">
+                                                <ul class="pagination justify-content-center">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#" aria-label="Previous" id="prev-page">
+                                                            <span aria-hidden="true">&laquo;</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#" aria-label="Next" id="next-page">
+                                                            <span aria-hidden="true">&raquo;</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                        <script>
+                                            
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="heaters-tab-pane" role="tabpanel">
+                        {% include "heaters.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const getCaptureBaseUrl = "{{ url_for('cam_strobe.get_image', image_name='') }}"
+        const cameraTypeUrl = '{{ url_for("api.cam_strobe.camera_type") }}';
+        const cameraConfigUrl = '{{ url_for("api.cam_strobe.camera_config") }}';
+        const framesUrl = '{{ url_for("api.cam_strobe.get_frame") }}';
+        const makeCaptureUrl = '{{ url_for("api.cam_strobe.capture") }}';
+        const captureRenameUrl = '{{ url_for("api.cam_strobe.capture_rename") }}';
+        const listCapturesUrl = '{{ url_for("api.cam_strobe.list_images") }}';
+        const strobePeriodUrl = '{{ url_for("api.cam_strobe.strobe_period") }}';
+        const setStrobeEnableUrl = '{{ url_for("api.strobe.strobe_enable") }}';
+        document.addEventListener('DOMContentLoaded', function() {
+            if ('{{ camera_name }}' !== 'none') {
+                updateCameraConfig('{{ camera_name }}');
+            }
+        });
+    </script>
+    <script src="{{ url_for('api.cam_strobe.static', filename='js/main.js') }}"></script>
+</body>
+</html></div></li></ul></div>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure Camera</title>
+</head>
+<body>
+    <h1>Configure Camera</h1>
+    <form action="{{ url_for('mako_camera.configure') }}" method="post">
+        <!-- <label for="AcquisitionFrameRate"> Frame Rate:</label>
+        <input type="number" name="AcquisitionFrameRate" id="AcquisitionFrameRate" value="{{AcquisitionFrameRate}}">
+        <input type="submit" value="Save Configuration"> -->
+        {% if failed_features %}
+            {% for feature, message in failed_features.items() %}
+            <p style="color: red;">{{ feature }}: {{ message }}</p>
+            {% endfor %}
+        {% elif failed_features is mapping and failed_features %}
+            <p style="color: green;">Configuration saved successfully!</p>
+        {% endif %}
+        {% for item in cam_features %}
+        {% set key = item["name"] %}
+        {% set type_ = item["type"] %}
+        {% set value = item["value"] %}
+        {% set writeEnabled = item["access_mode"][1] %}
+            <label for="{{key}}">{{key}}:</label>
+            {% if type_ == "IntFeature" %}
+                <input type="number" name="{{key}}" id="{{key}}" value="{{value}}" {% if not writeEnabled %}disabled{% endif %}>
+                Limits: {{item["range"]}}
+            {% elif type_ == "FloatFeature" %}
+                <input type="number" name="{{key}}" id="{{key}}" value="{{value}}" step="any" {% if not writeEnabled %}disabled{% endif %}>
+                Limits: {{item["range"]}}
+            {% elif type_ == "BoolFeature" %}
+                <input type="checkbox" name="{{key}}" id="{{key}}" {% if value %}checked{% endif %} {% if not writeEnabled %}disabled{% endif %}>
+            {% elif type_ == "EnumFeature" %}
+                <select name="{{key}}" id="{{key}}">
+                    {% for option in item["available_entries"] %}
+                        <option value="{{option}}" {% if option == value %}selected{% endif %}>{{option}}</option>
+                    {% endfor %}
+                </select>
+            {% else %}
+                <input type="text" name="{{key}}" id="{{key}}" value="{{value}}" {% if not writeEnabled %}disabled{% endif %}>
+            {% endif %}
+            <br>
+        {% endfor %}
+        <input type="submit" value="Save Configuration">
+    </form>
+</body>
+</html>

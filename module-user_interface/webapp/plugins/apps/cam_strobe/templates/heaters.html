@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-md-12">
+        {% for i in range(1, 5) %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Heater {{i}}</h5>
+                        <form id="camera-selection-form">
+                            <div class="form-group">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <th>Property</th>
+                                            <th>Current Value</th>
+                                            <th>Set Value</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td><div id="heater_{{i}}_status"></div></td>
+                                        <tr>
+                                            <td>Control Mode</td>
+                                            <td><div id="heater_{{i}}_control_mode"></div></td>
+                                            <td>
+                                                <select class="form-control" name="control_mode">
+                                                    <option value="off">Off</option>
+                                                    <option value="pressure_open_loop">Pressure Open Loop</option>
+                                                    <option value="pressure_closed_loop">Pressure Closed Loop</option>
+                                                    <option value="flow_closed_loop">Flow Closed Loop</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pressure (mbar)</td>
+                                            <td><div id="heater_{{i}}_pressure"></div></td>
+                                            <td><input type="number" class="form-control" name="pressure" value="0"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Flow (ml/hr)</td>
+                                            <td><div id="heater_{{i}}_flow"></div></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <button type="button" class="btn btn-primary" id="submit-button">Submit</button>
+                        </form>
+                        <script>
+                            
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="https://cdn.socket.io/4.8.1/socket.io.min.js" integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+" crossorigin="anonymous"></script>
+<script src="{{ url_for('api.cam_strobe.static', filename='js/heaters.js') }}"></script>
