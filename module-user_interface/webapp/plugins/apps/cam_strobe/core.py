@@ -15,12 +15,21 @@ from ...devices.pi_camera_32.core import pi_camera
 class StrobeCam:
     
     DEFAULT_LED_BOARD_PIN = 29
+    DEFAULT_TRIGGER_GPIO_PIN = 18  # GPIO pin for PIC trigger (configurable)
 
-    def __init__(self, strobe_instance: Strobe, background_thread=False, led_board_pin=29):
+    def __init__(self, strobe_instance: Strobe, background_thread=False, led_board_pin=29, trigger_gpio_pin=18):
         self.led_board_pin = led_board_pin
+        self.trigger_gpio_pin = trigger_gpio_pin
         self.camera = None
         self.thread: threading.Thread = None
         self.strobe = strobe_instance
+        self.trigger_mode = "software"  # "software" or "hardware" (if camera XVS available)
+        self.strobe_enabled = False
+        
+        # Initialize GPIO for PIC trigger (software-triggered mode)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.trigger_gpio_pin, GPIO.OUT)
+        GPIO.output(self.trigger_gpio_pin, GPIO.LOW)
         
         # self.init_led_pin()
         if background_thread:
@@ -29,6 +38,8 @@ class StrobeCam:
     def set_camera(self, camera_name):
         if camera_name == "mako":
             from ...devices.mako_camera.core import mako_camera
+            self.camera = mako_camera
+            self.init_strobe()
         elif camera_name == "pi":
             self.camera = pi_camera
             self.init_strobe()
@@ -36,10 +47,22 @@ class StrobeCam:
             raise ValueError("Invalid camera name")
 
     def init_strobe(self):
-        
-        # self.camera.set_frame_callback(self.send_led_pulse)
-        self.strobe.set_enable(1)
+        # Configure strobe for hardware trigger mode (PIC will wait for GPIO trigger)
+        self.strobe.set_trigger_mode(True)  # Hardware trigger mode (PIC waits for T1G input)
         self.strobe.set_hold(0)
+        # Don't enable yet - wait for timing to be set
+        
+    def frame_callback_trigger(self):
+        """
+        Frame callback - triggers PIC via GPIO pin.
+        This is called on each frame capture (software callback has ~1-5ms jitter,
+        but PIC hardware timing is still precise).
+        """
+        if self.strobe_enabled:
+            # Generate short pulse to PIC T1G input (hardware trigger)
+            GPIO.output(self.trigger_gpio_pin, GPIO.HIGH)
+            time.sleep(0.000001)  # 1us pulse (PIC detects edge)
+            GPIO.output(self.trigger_gpio_pin, GPIO.LOW)
 
 
     def start_thread(self):
@@ -56,13 +79,27 @@ class StrobeCam:
     def set_timing(self, strobe_period_ns):
         try:
             strobe_period_ns = min(strobe_period_ns, 16_000_000)
-            pre_padding_ns, strobe_period_ns, framerate = self._prepare_timing(32, strobe_period_ns, 20_000_000)
-            valid, _, _ = self.strobe.set_timing(pre_padding_ns, strobe_period_ns)
-            # valid, _, _ = self.strobe.set_timing(84032, strobe_period_ns)
-            print("Strobe period set to {}ns".format(strobe_period_ns))
-            self.optimize_fps_btn_enabled = True
+            
+            # For hardware trigger mode, we don't need complex timing calculations
+            # Camera is master - just set strobe timing parameters
+            wait_ns = 32  # Small delay after trigger before strobe fires
+            valid, _, _ = self.strobe.set_timing(wait_ns, strobe_period_ns)
+            
             if valid:
+                # Set frame callback to trigger PIC on each frame
+                if self.camera:
+                    self.camera.set_frame_callback(self.frame_callback_trigger)
+                
+                # Configure camera (simpler - no complex calculations needed)
+                shutter_speed_us = int(strobe_period_ns / 1000) + 1000  # Add some margin
+                framerate = min(60, int(1_000_000 / shutter_speed_us))
+                self.camera.set_config({"FrameRate": framerate, "ShutterSpeed": shutter_speed_us})
+                
+                # Enable strobe (will wait for GPIO trigger from frame callback)
+                self.strobe.set_enable(True)
                 self.strobe_enabled = True
+                
+                print("Strobe period set to {}ns, framerate={}fps".format(strobe_period_ns, framerate))
             else:
                 print("Invalid strobe period")
         except:
@@ -70,11 +107,14 @@ class StrobeCam:
             print(traceback.format_exc())
 
     def _prepare_timing(self, pre_padding_ns, strobe_period_ns, post_padding_ns):
+        """
+        Legacy method - kept for compatibility.
+        For hardware trigger mode, timing is simpler (no complex calculations).
+        """
         shutter_speed_us = int((strobe_period_ns + pre_padding_ns + post_padding_ns) / 1000)
         framerate = 1_000_000 / shutter_speed_us
         if framerate > 60:  
             framerate = 60
-        # framerate = 10
         self.camera.set_config({"FrameRate": framerate, "ShutterSpeed": shutter_speed_us})
 
         # Inter-frame period in microseconds
