@@ -1,7 +1,11 @@
+Affiliation: >-
+  Institute for Biological and Medical Engineering, Pontificia Universidad
+  Católica de Chile
 Authors:
+  - Pierre Padilla-Huamantinco
+  - Juan León-Gutierrez
+  - Matias Hurtado-Labarca
   - Tobias Wenzel
-  - Matías Hurtado Labarca
-  - Pierre Padilla
 CustomCategories:
   consumables:
     DisplayName: Consumables
@@ -22,8 +26,9 @@ CustomCategories:
     DisplayName: 3D Printed Parts
     Reuse: false
   printedtool:
-    Reuse: false
     DisplayName: 3D Printed Tools
+    Reuse: false
+Email: tobias.wenzel@uc.cl
 HoverColor: '#555555'
 License: CERN-OHL-1.2
 PrimaryColor: '#f1502f'

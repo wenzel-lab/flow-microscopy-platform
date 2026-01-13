@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Flow Microscopy Platform</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="./assets/favicon.ico" />
+
+    <link href="./static/base-style.css" rel="stylesheet">
+    <link href="./static/site-style.css" rel="stylesheet">
+                <link href="./assets/style.css" rel="stylesheet">
+            <style>
+  :root {
+    --primary-color: #f1502f;
+  }
+</style>
+<style>
+  :root {
+    --secondary-color: #cccccc;
+  }
+</style>
+<style>
+  :root {
+    --hover-color: #555555;
+}
+</style>
+    
+        <script type="text/javascript" src="./static/search.js" defer=""></script>
+    </head>
+<body>
+<header class="site-header">
+    <div class="wrapper header-wrapper" >
+        <div class=header-text>
+   
+    <h1 class="site-title">Flow Microscopy Platform</h1>
+   
+    <p class="author">by Pierre Padilla-Huamantinco, Juan León-Gutierrez, Matias Hurtado-Labarca, and Tobias Wenzel</p>
+    <p class="affiliation">Institute for Biological and Medical Engineering, Pontificia Universidad Católica de Chile</p>
+</div>
+            </div>
+</header>
+<div class="page-content">
+            <div>
+            <nav class="sidebar">
+                <a href="#" class="menu-icon">
+                <svg viewBox="0 0 18 15">
+                    <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                    <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                    <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                </svg>
+                </a>
+                <ul class="nav-list">
+                <li>
+    <a class="navhome" href="./">
+        Flow Microscopy Platform
+    </a>
+</li>
+<li id="nav-search" :class="focused && searchTerm.length > 0 ? 'search-result-popout' : 'search'" v-scope v-on:vue:mounted="mounted('./')">
+  <input
+    type="text"
+    placeholder="Search..."
+    v-on:input="search($event.target.value)"
+    v-on:keypress="handleKeyPress"
+    v-on:keyup.esc="$event.target.blur()"
+    v-on:focus="handleFocus"
+    v-on:blur="handleBlur"
+    :value="searchTerm" />
+    <div class="search-results" v-if="focused && searchTerm.length > 0">
+        <div v-if="searchResults.length > 0">Results:</div>
+        <div v-if="searchResults.length === 0">No results.</div>
+        <template v-for="(result, index) in searchResults">
+            <li>
+                <a class="search-result" :href="`./${result.path}.html`">
+               <span v-for="crumb in result.breadCrumbs.slice(0, -1)">
+                ${crumb + ' > '}
+                </span>
+               ${result.title || result.breadCrumbs[result.breadCrumbs.length - 1]}
+                <p>
+                    <span v-for="node in result.highlightChars" :class="node.mark ? 'highlight' : ''" >${node.chars}</span>
+                </p>
+                </a>
+            </li>
+        </template>
+    </div>
+</li>
+<li class="not-active">
+    <a class="not-active" href="./index_BOM.html">
+        Bill of Materials
+    </a>
+    </li>
+<li class="not-active">
+    <a class="not-active" href="./testpage1.html">
+        Assemble the base
+    </a>
+    </li>
+<li class="not-active">
+    <a class="not-active" href="./testpage2.html">
+        Prepare the parts
+    </a>
+    </li>
+
+                </ul>
+            </nav>
+        </div>
+        <div class="wrapper">
+    <h1 id="assemble-the-focus-mechanism">Assemble the focus mechanism</h1>
+<p><img alt="" src="images/Focusing.jpg" title="" /></p>
+<div class="pagebom">
+<h3 id="consumables">Consumables</h3>
+<ul>
+<li>1 drop of <a Class="bom" href="parts/consumables/light-oil.html">light oil</a>    - Optional</li>
+</ul>
+<h3 id="mechanical-components">Mechanical Components</h3>
+<ul>
+<li>1 <a Class="bom" href="parts/mech/nuts.html">M3 nut</a> </li>
+<li>2 <a Class="bom" href="parts/mech/washer.html">M3 washers</a> </li>
+<li>1 <a Class="bom" href="parts/mech/HEX-M3-25.html">M3x25mm hex head screw</a> </li>
+<li>1 <a Class="bom" href="parts/mech/oring.html">O-ring</a> </li>
+</ul>
+<h3 id="3d-printed-parts">3D Printed Parts</h3>
+<ul>
+<li>1 <a Class="bom" href="models/z_foot.html">Actuator Foot</a> </li>
+<li>1 <a Class="bom" href="models/focusing-assembly.html">Focusing assembly</a> </li>
+<li>1 <a Class="bom" href="models/thumbwheel.html">Thumbwheel</a> </li>
+</ul>
+<h3 id="3d-printed-tools">3D Printed Tools</h3>
+<ul>
+<li>1 <a Class="bom" href="models/actuator-assembly-tools.html">Band tool</a> </li>
+<li>1 <a Class="bom" href="models/actuator-assembly-tools.html">Nut tool</a> </li>
+</ul>
+</div>
+<h2 class="page-step" id="assemble-the-thumbwheel">Step 1: Assemble the thumbwheel</h2>
+<ul>
+<li>Push the <a href="parts/mech/HEX-M3-25.html">M3x25mm hex head screw</a> into the <a href="models/thumbwheel.html">thumbwheel</a>.</li>
+<li>Thread the <a href="parts/mech/washer.html">M3 washers</a> onto the screw.</li>
+<li>Place a drop of <a href="parts/consumables/light-oil.html">light oil</a> on the screw thread. You might want to put some kitchen paper or blu roll on your bench to soak up any dribbles of oil.</li>
+</ul>
+<div class="gallery-thumb">
+    <img onmouseover="getElementById('gallery-show0').src=this.src" src="images/thumbwheel_parts.jpg" alt="" />
+    <img onmouseover="getElementById('gallery-show0').src=this.src" src="images/thumbwheel_assembled.jpg" alt="" />
+    <img onmouseover="getElementById('gallery-show0').src=this.src" src="images/thumbwheel_assembled_1.jpg" alt="" />
+</div>
+<div class="gallery-show"><img id="gallery-show0" src="images/thumbwheel_parts.jpg" alt=""/></div>
+<h2 class="page-step" id="insert-the-nut">Step 2: Insert the nut</h2>
+<ul>
+<li>Push the <a href="parts/mech/nuts.html">M3 nut</a> into the slot in the <a href="models/focusing-assembly.html">focusing assembly</a> (using the <a href="models/actuator-assembly-tools.html">nut insertion tool</a>)</li>
+</ul>
+<div class="gallery-thumb">
+    <img onmouseover="getElementById('gallery-show1').src=this.src" src="images/nut_insertion.jpg" alt="" />
+    <img onmouseover="getElementById('gallery-show1').src=this.src" src="images/nut_inserted.jpg" alt="" />
+</div>
+<div class="gallery-show"><img id="gallery-show1" src="images/nut_insertion.jpg" alt=""/></div>
+<h2 class="page-step" id="add-the-thumbwheel">Step 3: Add the thumbwheel</h2>
+<ul>
+<li>Screw the <a href="models/thumbwheel.html">thumbwheel</a> assembly into the <a href="parts/mech/nuts.html">M3 nut</a> in the <a href="models/focusing-assembly.html">focusing assembly</a>.</li>
+</ul>
+<p><img alt="" src="images/thumbwheel_screwed_in.jpg" title="" /></p>
+<h2 class="page-step" id="insert-the-o-ring">Step 4: Insert the O ring</h2>
+<ul>
+<li>Next, we will insert the <a href="parts/mech/oring.html">O-ring</a> to complete the mechanism.</li>
+</ul>
+<p><img alt="" src="images/band_insertion_parts.jpg" title="" /></p>
+<ul>
+<li>Thread the <a href="parts/mech/oring.html">30mm diameter, 2mm thickness Viton O ring</a> through the two holes in the <a href="models/z_foot.html">foot</a>, and use the <a href="models/actuator-assembly-tools.html">band insertion tool</a> to stretch the two loops of band as shown in the picture.</li>
+</ul>
+<p><img alt="" src="images/band_in_foot.jpg" title="" /></p>
+<h2 class="page-step" id="click-the-band-into-place">Step 5: Click the band into place</h2>
+<ul>
+<li>Line the <a href="models/z_foot.html">foot</a> up with the hole in the bottom of the <a href="models/focusing-assembly.html">focusing assembly</a>, and push on the <a href="models/actuator-assembly-tools.html">band insertion tool</a> to click the band into place.</li>
+<li>You should feel two clicks as the two ends of the band hook over the actuator column. It's easier if you use the <a href="models/actuator-assembly-tools.html">nut insertion tool</a> to hold the mechanism still as you do this.</li>
+</ul>
+<div class="gallery-thumb">
+    <img onmouseover="getElementById('gallery-show2').src=this.src" src="images/band_insertion_1.jpg" alt="" />
+    <img onmouseover="getElementById('gallery-show2').src=this.src" src="images/band_insertion_2.jpg" alt="" />
+    <img onmouseover="getElementById('gallery-show2').src=this.src" src="images/band_insertion_3.jpg" alt="" />
+    <img onmouseover="getElementById('gallery-show2').src=this.src" src="images/band_insertion_4.jpg" alt="" />
+</div>
+<div class="gallery-show"><img id="gallery-show2" src="images/band_insertion_1.jpg" alt=""/></div>
+<h2 class="page-step" id="remove-the-tool">Step 6: Remove the tool</h2>
+<ul>
+<li>Gently pull the <a href="models/actuator-assembly-tools.html">band insertion tool</a> out of the <a href="models/z_foot.html">foot</a>.</li>
+<li>The band should pull the foot tight against the <a href="models/focusing-assembly.html">focusing assembly</a> as shown.</li>
+</ul>
+<p><img alt="" src="images/band_inserted.jpg" title="" /></p>
+<p>Well done, you have now assembled the <a name="output__focusing-mechanism"></a>focusing mechanism.</p>
+    </div>
+</div>
+<footer class="site-footer">
+    <div class="wrapper">
+        <a target="_blank" rel="noopener noreferrer" href="https://gitbuilding.io">
+    <img class="icon" src="./static/Logo/GitBuilding500x.png" alt="GitBuilding logo">
+    <span class="doc-info">Documentation powered by GitBuilding</span>
+</a>
+    <p class="author">©2026 Pierre Padilla-Huamantinco, Juan León-Gutierrez, Matias Hurtado-Labarca, and Tobias Wenzel</p>
+    <p class="email">Contact: <a href="mailto:tobias.wenzel@uc.cl">tobias.wenzel@uc.cl</a></p>
+    <p class="license">Flow Microscopy Platform is released under <a href="license.html">CERN-OHL-1.2</a>.</p>
+
+    </div>
+</footer></body>
+</html>
