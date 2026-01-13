@@ -1,0 +1,30 @@
+Authors:
+  - Tobias Wenzel
+  - Matías Hurtado Labarca
+  - Pierre Padilla
+CustomCategories:
+  consumables:
+    DisplayName: Consumables
+    Reuse: false
+  elect:
+    DisplayName: Electronic Components
+    Reuse: false
+  materials:
+    DisplayName: Materials
+    Reuse: false
+  mech:
+    DisplayName: Mechanical Components
+    Reuse: false
+  optics:
+    DisplayName: Optical Components
+    Reuse: false
+  printedpart:
+    DisplayName: 3D Printed Parts
+    Reuse: false
+  printedtool:
+    Reuse: false
+    DisplayName: 3D Printed Tools
+HoverColor: '#555555'
+License: CERN-OHL-1.2
+PrimaryColor: '#f1502f'
+SecondaryColor: '#cccccc'
