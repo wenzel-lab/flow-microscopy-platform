@@ -12,15 +12,17 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: "3.7"
-      - name: Build
+      - name: Install GitBuilding
         run: |
           pip install gitbuilding
-          gitbuilding build-html
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+      - name: Build documentation
+        run: |
+          gitbuilding build
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: main
-          FOLDER: _site/
+          FOLDER: _build/
           # Automatically remove deleted files from the deploy branch
           CLEAN: false
