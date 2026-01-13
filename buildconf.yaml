@@ -33,3 +33,4 @@ HoverColor: '#555555'
 License: CERN-OHL-1.2
 PrimaryColor: '#f1502f'
 SecondaryColor: '#cccccc'
+LandingPage: index.md
