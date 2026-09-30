@@ -5,14 +5,13 @@ Follow us! [#twitter](https://twitter.com/WenzelLab), [#YouTube](https://www.you
 
 ## Usage
 
+<p align="left">
+<img src="./images/rio-platform_s.jpg" width="600">
+</p>
+
 The platform consists of a number of different functional modules that are connected to each other:
 <p align="left">
 <img src="./images/flow-platform-diagram.jpg" width="600">
-</p>
-
-We are currently arranging the modules with a cable management plan. Simply spreading the modules out on the table looked like this during previous experiments:
-<p align="left">
-<img src="./images/flow-platform.jpg" width="300">
 </p>
 
 One use of our heater modules is the tip-heater for injecting agarose gel into microfluidic chips:
