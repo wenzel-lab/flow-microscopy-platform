@@ -26,6 +26,10 @@ We also designed a pressure vial holder with individual manifold caps for easy t
 
 We also implemented a droplet detection AI module to measure the droplet diameters and display the size distribution https://github.com/wenzel-lab/droplet_AInalysis
 
+## Troubleshooting
+
+* We have encountered rare mis-starts of the power supply. If the raspberry pi works (separate USB power supply) but the pressure regulator lights, strobe LED, etc. are not working. Disconnect, wait 8 seconds, and reconnect the main power supply cable. It should reboot correctly. The power supply has a blue LED active when working correctly, but that's hard to see without opening up the workstation.
+
 ## Contribute
 
 You're free to fork the project and enhance it. If you have any suggestions to improve it or add any additional functions make a pull-request or [open an issue](https://github.com/wenzel-lab/flow-microscopy-platform/issues/new).
@@ -33,13 +37,12 @@ For interactions in our team and with the community applies the [GOSH Code of Co
 
 ## Team
 
-+ Project initiators:
++ Major project contributors:
     - Tobias Wenzel @MakerTobey
     - Christie Nel @Cyberius
     - Pierre Padilla-Huamantinco @biodotpe
     - Matias Hurtado @matiashl27
-+ Contributors:
-    - Eduardo Honeyman
+    - Juan José Leon
 
 ## License
 
